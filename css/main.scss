@@ -20,7 +20,9 @@ a{
     width: 100%;
     height: 100vh;
     z-index: -1;
+    animation: introLoad 2s forwards;
     // overflow: hidden;
+
 }
 
 .logo{
@@ -72,7 +74,7 @@ header{
     justify-content: space-between;
 
     svg{
-        width: 3em;
+        width: 2.1em;
         margin-top: -.6em;
         cursor: pointer;
     }
@@ -91,12 +93,16 @@ h1{
 section.hero{
     color: white;
     height: 90vh;
+    animation: moveDown 1s ease-in-out forwards;
+    opacity: 0;
 
-    svg{
+    .down-arrow{
         stroke: white;
         position: absolute;
-        bottom: 2em;
+        bottom: 5em;
         width: 1em;
+        animation: moveArrow 1s alternate-reverse infinite;
+
         path{
             fill: white;
         }
@@ -131,6 +137,7 @@ section.hero{
     .menu{
         display: none;
     }
+
 
     nav{
         transform: translateX(0);
@@ -181,12 +188,13 @@ section.hero{
         width: 40%;
         margin-bottom: 8em;
 
-        svg{
+        svg.down-arrow{
             stroke: black;
             position: unset;
+            margin-top:2em ;
 
             path{
-                fill:black
+                fill:black;
             }
         }
     }
@@ -221,6 +229,9 @@ section.hero{
 
 }
 
+.open-nav{
+    transform: translateX(0%);
+}
 
 @media only screen and (min-width: 1200px){
 
@@ -233,4 +244,37 @@ section.hero{
         gap: 0;
     }
 
+}
+
+@keyframes introLoad {
+    from {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+
+    }
+    to{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+@keyframes moveArrow {
+    from {
+        transform: translateY(-30px);
+
+    }
+    to{
+        transform: translateY(0);
+
+    }
+}
+
+@keyframes moveDown {
+    from {
+        transform: translateY(-10px);
+
+    }
+    to{
+        transform: translateY(0);
+        opacity: 1;
+
+    }
 }
